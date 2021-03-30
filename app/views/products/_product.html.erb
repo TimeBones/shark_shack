@@ -1,0 +1,33 @@
+<div class="column">
+  <div class="card">
+    <% if product.image.present? %>
+      <div class="card-image">
+        <figure class="image">
+          <%= image_tag product.image %>
+        </figure>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <p class="title">
+      <% if show_link %>
+        <%= link_to product.name, product %>
+      <% else %>
+        <%= product.name %>
+      <% end %>
+      </p>
+      <p>Categories:
+      <ul>
+        <% product.categories.each do |c| %>
+            <li><%= c.name %></li>
+
+        <% end %>
+      </ul>
+      </p>
+    </div>
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        info prod/sku/weight/price/w/e
+      </p>
+    </footer>
+  </div>
+</div>

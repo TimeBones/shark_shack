@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'activeadmin' #kinda like phpmyadmin
 gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'stripe'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'

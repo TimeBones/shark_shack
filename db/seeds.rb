@@ -25,7 +25,7 @@ food = Category.create(name: "Food")
   puts(toy.name)
 
   apa = Product.create(name:        "Shark " + Faker::Commerce.unique.product_name,
-                       desc:        Faker::Games::Dota.quote,
+                       desc:        "For the " + Faker::Verb.ing_form + ", " + Faker::Verb.ing_form + ", " + Faker::Verb.ing_form + " shark.",
                        price:       rand(100..1000),
                        weight:      rand(10..99),
                        category_id: apparel.id,
@@ -34,7 +34,7 @@ food = Category.create(name: "Food")
   puts(apa.name)
 
   foo = Product.create(name:        "Shark " + Faker::Food.unique.dish,
-                       desc:        Faker::Food.description,
+                       desc:        Faker::Food.description + "Made for sharks.",
                        price:       rand(100..1000),
                        weight:      rand(10..99),
                        category_id: food.id,
