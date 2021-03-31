@@ -1,0 +1,17 @@
+<div class="p-6">
+    <h3 class="title">
+        <%= @user.username %>
+    </h3>
+    <ul>
+        <li>password: <%= @user.password %></li>
+        <li>email: <%= @user.email %></li>
+        <li>address: <%= @user.address %></li>
+        <li>active: <%= @user.active.to_i %></li>
+    </ul>
+    <p>orders: TBD <%=%></p>
+    <ul>
+    <% @user.orders.each do |o| %>
+        <li><%= o.date %></li>
+    <% end %>
+    </ul>
+</div>
