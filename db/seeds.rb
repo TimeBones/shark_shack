@@ -14,7 +14,7 @@ toys = Category.create(name: "Toys")
 apparel = Category.create(name: "Apparel")
 food = Category.create(name: "Food")
 
-3.times do
+5.times do
   toy = Product.create(name:        "Shark " + Faker::Games::Dota.unique.item,
                        desc:        Faker::Games::Dota.quote,
                        price:       rand(100..1000),
@@ -22,7 +22,6 @@ food = Category.create(name: "Food")
                        category_id: toys.id,
                        status:      1)
   ProductCategory.create(product: toy, category: toys)
-  puts(toy.name)
 
   apa = Product.create(name:        "Shark " + Faker::Commerce.unique.product_name,
                        desc:        "For the " + Faker::Verb.ing_form + ", " + Faker::Verb.ing_form + ", " + Faker::Verb.ing_form + " shark.",
@@ -31,7 +30,6 @@ food = Category.create(name: "Food")
                        category_id: apparel.id,
                        status:      1)
   ProductCategory.create(product: apa, category: apparel)
-  puts(apa.name)
 
   foo = Product.create(name:        "Shark " + Faker::Food.unique.dish,
                        desc:        Faker::Food.description + "Made for sharks.",
@@ -40,5 +38,13 @@ food = Category.create(name: "Food")
                        category_id: food.id,
                        status:      1)
   ProductCategory.create(product: foo, category: food)
-  puts(foo.name)
+end
+
+Product.all.each do |prod|
+  query = URI.encode_www_form_component([prod.name, prod.categories[0].name].join(","))
+  downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
+  prod.image.attach(io:       downloaded_image,
+                    filename: "i-#{prod.name}.jpg")
+  puts("#{prod.name} - image found")
+  sleep(1)
 end

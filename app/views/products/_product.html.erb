@@ -19,7 +19,6 @@
       <ul>
         <% product.categories.each do |c| %>
             <li><%= c.name %></li>
-
         <% end %>
       </ul>
       </p>
@@ -28,6 +27,10 @@
       <p class="card-footer-item">
         info prod/sku/weight/price/w/e
       </p>
+      <%= form_with url: checkout_create_path, remote: true do %>
+        <%= hidden_field_tag(:product_id, product.id) %>
+        <%= button_tag 'STRIPE' %>
+      <% end %>
     </footer>
   </div>
 </div>
