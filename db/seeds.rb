@@ -10,6 +10,12 @@ User.create(username:   "Tim",
             powerlevel: 1,
             email:      "timbones@bones.com",
             active:     1)
+User.create(username:   "Guest",
+            password:   "guest",
+            powerlevel: 0,
+            email:      "guest@sharkshack.com",
+            active:     1)
+
 toys = Category.create(name: "Toys")
 apparel = Category.create(name: "Apparel")
 food = Category.create(name: "Food")

@@ -1,1 +1,5 @@
-<%= render @user %>
+<% if user.powerlevel > 0 %>
+    <%= render user %>
+<% else %>
+    <p class="p-6">You are not signed in: <%= user.username %></p>
+<% end %>
