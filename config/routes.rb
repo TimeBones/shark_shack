@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :cart, only: %i[create destroy index]
   resources :products, only: %i[show index]
+  resources :categories, only: %i[show index]
 
   get "/account", to: "users#show", as: "account_page"
   get "/about", to: "pages#about", as: "about_page"
