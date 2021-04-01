@@ -32,7 +32,7 @@ food = Category.create(name: "Food")
   ProductCategory.create(product: apa, category: apparel)
 
   foo = Product.create(name:        "Shark " + Faker::Food.unique.dish,
-                       desc:        Faker::Food.description + "Made for sharks.",
+                       desc:        Faker::Food.description + " Made for sharks.",
                        price:       rand(100..1000),
                        weight:      rand(10..99),
                        category_id: food.id,

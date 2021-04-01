@@ -1,9 +1,17 @@
-<div class="column">
+<% if show_link %>
+  <div class="column is-one-fifth">
+<% else %>
+  <div class="column is-10 is-offset-1">
+<% end %>
   <div class="card">
     <% if product.image.present? %>
       <div class="card-image">
+      <% if show_link%>
         <figure class="image">
-          <%= image_tag product.image %>
+      <% else %>
+        <figure class="image is-3by1">
+      <% end %>
+        <%= image_tag product.image %>
         </figure>
       </div>
     <% end %>
@@ -24,9 +32,11 @@
       </p>
     </div>
     <footer class="card-footer">
-      <p class="card-footer-item">
-        info prod/sku/weight/price/w/e
-      </p>
+        <p class="card-footer-item">
+      <% unless show_link %>
+          <%= product.desc %>
+      <% end %>
+        </p>
       <%= form_with url: checkout_create_path, remote: true do %>
         <%= hidden_field_tag(:product_id, product.id) %>
         <%= button_tag 'STRIPE' %>
