@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :products, only: %i[show index]
   resources :categories, only: %i[show index]
 
-  get "/account", to: "users#show", as: "account_page"
-  get "/about", to: "pages#about", as: "about_page"
+  get "/account", to: "users#show"
+  get "/about", to: "pages#about"
 
   scope "/checkout" do
     post "create", to: "checkout#create", as: "checkout_create"
