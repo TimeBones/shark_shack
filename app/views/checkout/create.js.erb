@@ -1,9 +1,4 @@
-console.log("<%= @product.name %>")
-
-const stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
-
-stripe.redirectToCheckout({
-    sessionId: '<%= @session.id %>'
-}).then(function(result) {
-    console.log(result.error.message);
-})
+<ul><% @product.each do |p| %>
+<li><%= p.name %> X</li>
+<%end %>
+</ul>

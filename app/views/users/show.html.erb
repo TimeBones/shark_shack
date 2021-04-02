@@ -2,4 +2,5 @@
     <%= render user %>
 <% else %>
     <p class="p-6">You are not signed in: <%= user.username %></p>
+    <% controller.redirect_to user_login_url %>
 <% end %>
