@@ -1,0 +1,43 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to "🦈Shark🦈Shack🦈", root_path, class: 'navbar-item'%>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Products
+        </a>
+        <div class="navbar-dropdown">
+            <%= link_to "All", products_path, class: "navbar-item"%>
+            <% categories.each do |cat| %>
+                <%= link_to cat.name, cat, class: "navbar-item"%>
+            <% end %>
+        </div>
+      </div>
+      <%= link_to "Account", account_path, class: "navbar-item" %>
+      <%= link_to "About", about_page_path, class: "navbar-item" %>
+      <div class="navbar-item">Search</div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+            <% if user.powerlevel > 0 %>
+                <%= link_to user.username, account_path, class: "button is-info" %>
+                <%= link_to "Log out", user_logout_path, class: "button is-danger" %>
+            <% else %>
+                <%= link_to "Sign up", new_account_path, class: "button is-primary" %>
+                <%= link_to "Log in", user_login_path, class: "button is-primary" %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :initialize_session
   helper_method :cart
   helper_method :user
+  helper_method :categories
 
   private
 
@@ -15,7 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def user
-    # User.first
     User.find(session[:user])
+  end
+
+  def categories
+    Category.all
   end
 end
