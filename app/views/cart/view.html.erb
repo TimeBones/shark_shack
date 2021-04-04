@@ -1,0 +1,23 @@
+<h1 class="title is-5">Cart page</h1>
+<table class="table">
+<% @cart.each_pair do |key, value| %>
+    <% product = Product.find(key) %>
+    <tr>
+        <td>
+            <% if product.image.present? %>
+                <figure class="image is-96x96">
+                    <%= product.image %>
+                </figure>
+            <% end %>
+        </td>
+        <td>
+            <%= product.name %>
+        </td>
+        <td>
+            <%= (product.price.to_f)/100 %>
+        </td>
+        <td>
+            Qty: <%= value %>
+        </td>
+    </tr>
+<% end %>

@@ -37,8 +37,9 @@
           <%= product.desc %>
       <% end %>
         </p>
-      <%= form_with url: checkout_create_path, remote: true do %>
-        <%= hidden_field_tag(:product_id, product.id) %>
+      <%= form_with url: cart_create_path, format: 'js', remote: true do %>
+        <%= hidden_field_tag(:id, product.id) %>
+        <%= hidden_field_tag(:qty, 1) %>
         <%= button_tag 'STRIPE', class: "button is-info" %>
       <% end %>
     </footer>

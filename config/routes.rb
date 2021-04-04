@@ -19,5 +19,11 @@ Rails.application.routes.draw do
     get "cancel", to: "checkout#cancel", as: "checkout_cancel"
   end
 
+  scope "/cart" do
+    post "create", to: "cart#create", as: "cart_create"
+    get "destroy", to: "cart#destroy", as: "cart_destroy"
+    get "view", to: "cart#view", as: "cart_view"
+  end
+
   root to: "pages#home"
 end

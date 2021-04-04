@@ -1,1 +1,33 @@
-<p>success page</p>
+<h3 class="title is-3">Success!</h3>
+<p class="pb-5">Thank you for your purchase at the Shark🦈Shack</p>
+<h3 class="title is-5">Transaction Details</h3>
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td><%= @pi_data[:billing_details][:name]%></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><%= @pi_data[:billing_details][:email]%></td>
+    </tr>
+    <tr>
+        <td>Card</td>
+        <td>**** **** **** <%= @pi_data[:payment_method_details][:card][:last4] %></td>
+    </tr>
+    <tr>
+        <td>Subtotal</td>
+        <td>$<%= (@subtotal)/100 %></td>
+    </tr>
+    <tr>
+        <td>Taxes</td>
+        <td>$<%= (@total - @subtotal) %></td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>$<%= (@total)/100 %> <%= %></td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td><%= @pi_data[:status]%></td>
+    </tr>
+</table>
