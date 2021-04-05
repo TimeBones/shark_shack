@@ -5,8 +5,10 @@
     <% else %>
         <%= link_to "Keep Shopping", products_path, class: "title is-3 has-text-link" %>
         <table class="table is-hoverable mt-5">
+            <% subtotal = 0 %>
             <% @cart.each_pair do |key, value| %>
                 <% product = Product.find(key) %>
+                <% subtotal += product.price %>
                 <tr>
                     <td>
                         <% if product.image.present? %>
@@ -23,7 +25,7 @@
             <tr>
                 <td></td>
                 <td>Your total order is </td>
-                <td><%= number_to_currency 7%></td>
+                <td><%= number_to_currency subtotal.to_f / 100%></td>
                 <td></td>
             </tr>
             <tr>

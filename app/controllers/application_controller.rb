@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def initialize_session
     session[:shopping_cart] ||= {}
-    session[:user] ||= User.first
+    session[:user] ||= User.first.id
   end
 
   def user
