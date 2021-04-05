@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :orders
-  validates :username, :password, :powerlevel, :active, presence: true
+  validates :username, :passphrase, :powerlevel, :active, presence: true
   validates :username, uniqueness: true
   validates :powerlevel, :active, numericality: { only_integer: true }
 end

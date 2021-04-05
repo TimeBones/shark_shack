@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :categories, only: %i[show index]
 
   get "/about", to: "pages#about", as: "about_page"
+  get "/search", to: "pages#search", as: "search_page"
   get "/logout", to: "users#logout", as: "user_logout"
   get "/account", to: "users#show", as: "account"
   get "/login", to: "users#login", as: "user_login"

@@ -1,3 +1,3 @@
 ActiveAdmin.register User do
-  permit_params :username, :password, :powerlevel, :email, :address, :active
+  permit_params :username, :passphrase, :powerlevel, :email, :address, :active
 end
