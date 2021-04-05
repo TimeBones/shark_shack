@@ -31,18 +31,18 @@
         <% end %>
       </ul>
       </p>
-    </div>
-    <footer class="card-footer">
       <% unless show_link %>
         <p class="card-footer-item">
               <%= product.desc %>
         </p>
       <% end %>
-      <%= form_with url: cart_create_path, method: :post do %>
+    </div>
+    <footer class="card-footer">
+      <%= form_with url: cart_create_path, method: :post, class: "is-flex-grow-1" do %>
         <%= hidden_field_tag(:id, product.id) %>
         <%= hidden_field_tag(:qty, 1) %>
         <%= hidden_field_tag(:source, request.env['PATH_INFO'])%>
-        <%= button_tag 'STRIPE', class: "button is-info" %>
+        <%= button_tag 'Add To Cart', class: "button is-light is-info is-fullwidth" %>
       <% end %>
     </footer>
   </div>

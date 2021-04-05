@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def initialize_session
     session[:shopping_cart] ||= {}
-    session[:user] ||= User.where("username LIKE 'Guest'").first.id
+    session[:user] ||= User.first
   end
 
   def user

@@ -1,9 +1,8 @@
 <div class="p-6">
     <h3 class="title">
-        <%= user.username %>
+        <%= user.username.capitalize %>
     </h3>
     <ul>
-        <li>password: <%= user.password %></li>
         <li>email: <%= user.email %></li>
         <li>address: <%= user.address %></li>
         <li>active: <%= user.active.to_i %></li>

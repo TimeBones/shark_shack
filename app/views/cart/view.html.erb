@@ -1,11 +1,10 @@
-<h1 class="title is-5">Cart page</h1>
 <div class="p-5">
     <% if @cart.empty? %>
-        <h3 class="title is-3">Your cart is empty</h3>
-        <%= link_to "View Our Products", products_path %>
+        <h3 class="title is-3 m-0">Your cart is empty</h3>
+        <%= link_to "View Our Products", products_path, class: "ml-2" %>
     <% else %>
-        <%= link_to "Keep Shopping", products_path %>
-        <table class="table is-hoverable">
+        <%= link_to "Keep Shopping", products_path, class: "title is-3 has-text-link" %>
+        <table class="table is-hoverable mt-5">
             <% @cart.each_pair do |key, value| %>
                 <% product = Product.find(key) %>
                 <tr>
