@@ -13,14 +13,12 @@
 
   <body class="p-3">
     <%= render partial: "layouts/navbar" %>
-    <%= yield %>
-  </body>
-  <footer>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
-  </footer>
+    <%= yield %>
+  </body>
 </html>
