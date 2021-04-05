@@ -23,6 +23,6 @@ class PagesController < ApplicationController
                                                                   "%#{@search}%")
     else
       flash[:notice] = "Invalid Category"
-     end
+    end
   end
 end

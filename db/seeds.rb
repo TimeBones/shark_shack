@@ -6,10 +6,10 @@ Category.delete_all
 User.delete_all
 
 User.create(username:   "Guest",
-  password:   "guestpassword",
-  powerlevel: 0,
-  email:      "guest@sharkshack.ca",
-  active:     1)
+            password:   "guestpassword",
+            powerlevel: 0,
+            email:      "guest@sharkshack.ca",
+            active:     1)
 
 toys = Category.create(name: "Toys")
 apparel = Category.create(name: "Apparel")
@@ -42,7 +42,7 @@ count = 0
                         status:      1)
   ProductCategory.create(product: fude, category: food)
   count += 1
-  next unless count <= 5
+  next unless count >= 5
 
   ProductCategory.create(product: toy, category: sale)
   ProductCategory.create(product: apa, category: sale)
@@ -57,4 +57,3 @@ Product.all.each do |prod|
   puts("#{prod.name} - image found")
   sleep(1)
 end
-
