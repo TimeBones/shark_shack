@@ -2,16 +2,25 @@ class CartController < ApplicationController
   def create
     id = params[:id].to_i
     qty = params[:qty].to_i
-
-    session[:shopping_cart][id] = if session[:shopping_cart].key?(id.to_s)
-                                    session[:shopping_cart].fetch(id.to_s) + qty
-                                  else
-                                    qty
-                                  end
     product = Product.find(id)
-    flash[:notice] = "Added #{product.name} to the cart."
+
+    if product.nil?
+      redirect_to root_path
+      return
+    end
+
+    if session[:shopping_cart].key?(id.to_s)
+      new_qty = session[:shopping_cart].fetch(id.to_s) + qty
+      session[:shopping_cart][id] = new_qty
+      message = "#{product.name} quantity increased to #{new_qty}"
+    else
+      session[:shopping_cart][id] = qty
+      message = "Added #{product.name} to the cart."
+    end
+
     @cart = session[:shopping_cart]
-    redirect_to root_path
+    flash[:notice] = message
+    redirect_to params[:source].to_s
   end
 
   def destroy

@@ -23,6 +23,7 @@
         <%= product.name %>
       <% end %>
       </p>
+      <p>Price <%= number_to_currency product.price.to_f / 100.0 %></p>
       <p>Categories:
       <ul>
         <% product.categories.each do |c| %>
@@ -32,14 +33,15 @@
       </p>
     </div>
     <footer class="card-footer">
-        <p class="card-footer-item">
       <% unless show_link %>
-          <%= product.desc %>
-      <% end %>
+        <p class="card-footer-item">
+              <%= product.desc %>
         </p>
-      <%= form_with url: cart_create_path, format: 'js', remote: true do %>
+      <% end %>
+      <%= form_with url: cart_create_path, method: :post do %>
         <%= hidden_field_tag(:id, product.id) %>
         <%= hidden_field_tag(:qty, 1) %>
+        <%= hidden_field_tag(:source, request.env['PATH_INFO'])%>
         <%= button_tag 'STRIPE', class: "button is-info" %>
       <% end %>
     </footer>

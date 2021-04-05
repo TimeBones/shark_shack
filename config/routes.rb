@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get "/account", to: "users#show", as: "account"
   get "/login", to: "users#login", as: "user_login"
   get "/newaccount", to: "users#newaccount", as: "new_account"
-  post "create", to: "users#create", as: "user_create"
-  post "logging", to: "users#logging", as: "user_logging"
+  post "/create", to: "users#create", as: "user_create"
+  post "/logging", to: "users#logging", as: "user_logging"
 
   scope "/checkout" do
     post "create", to: "checkout#create", as: "checkout_create"
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   scope "/cart" do
     post "create", to: "cart#create", as: "cart_create"
     get "destroy", to: "cart#destroy", as: "cart_destroy"
+    get "empty", to: "cart#empty", as: "cart_empty"
     get "view", to: "cart#view", as: "cart_view"
   end
 

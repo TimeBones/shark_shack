@@ -1,23 +1,41 @@
 <h1 class="title is-5">Cart page</h1>
-<table class="table">
-<% @cart.each_pair do |key, value| %>
-    <% product = Product.find(key) %>
-    <tr>
-        <td>
-            <% if product.image.present? %>
-                <figure class="image is-96x96">
-                    <%= product.image %>
-                </figure>
+<div class="p-5">
+    <div class="">
+        <table class="table is-hoverable">
+            <% @cart.each_pair do |key, value| %>
+                <% product = Product.find(key) %>
+                <tr>
+                    <td>
+                        <% if product.image.present? %>
+                            <figure class="image is-64x64">
+                                <%= image_tag product.image %>
+                            </figure>
+                        <% end %>
+                    </td>
+                    <td><%= product.name %></td>
+                    <td><%= number_to_currency product.price.to_f / 100.0 %></td>
+                    <td>Qty: <%= value %></td>
+                </tr>
             <% end %>
-        </td>
-        <td>
-            <%= product.name %>
-        </td>
-        <td>
-            <%= (product.price.to_f)/100 %>
-        </td>
-        <td>
-            Qty: <%= value %>
-        </td>
-    </tr>
-<% end %>
+            <tr>
+                <td><%= link_to "Empty Cart", cart_empty_path, class: "button is-danger" %></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <%= form_with url: checkout_create_path, remote: true do %>
+                        <%= hidden_field_tag(:cart, @cart) %>
+                        <%= button_tag "Checkout", class: "button is-success" %>
+                    <% end %>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="media">
+        <p class="media-left">
+
+        </p>
+        <p class="media-right">
+
+        </p>
+    </div>
+</div>
