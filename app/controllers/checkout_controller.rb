@@ -51,6 +51,7 @@ class CheckoutController < ApplicationController
                           price:    product.price,
                           quantity: value)
     end
+    session[:shopping_cart].clear
   end
 
   def cancel; end

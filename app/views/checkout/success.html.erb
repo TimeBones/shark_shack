@@ -16,15 +16,15 @@
     </tr>
     <tr>
         <td>Subtotal</td>
-        <td>$<%= (@subtotal)/100 %></td>
+        <td>$<%= number_to_currency @subtotal / 100 %></td>
     </tr>
     <tr>
         <td>Taxes</td>
-        <td>$<%= (@total - @subtotal) %></td>
+        <td>$<%= number_to_currency (@total - @subtotal) / 100 %></td>
     </tr>
     <tr>
         <td>Total</td>
-        <td>$<%= (@total)/100 %> <%= %></td>
+        <td>$<%= number_to_currency @total / 100 %> <%= %></td>
     </tr>
     <tr>
         <td>Status</td>
