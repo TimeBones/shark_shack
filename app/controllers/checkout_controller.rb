@@ -29,14 +29,28 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    session = Stripe::Checkout::Session.retrieve(params[:session_id])
-    payment_intent = Stripe::PaymentIntent.retrieve(session.payment_intent)
+    stripe_session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    payment_intent = Stripe::PaymentIntent.retrieve(stripe_session.payment_intent)
 
     @pi_data = payment_intent[:charges][:data][0]
-    @total = session[:amount_total].to_f
-    @subtotal = session[:amount_subtotal].to_f
+    @total = stripe_session[:amount_total].to_i
+    @subtotal = stripe_session[:amount_subtotal].to_i
 
     # start creating the orders and apply them to the user!!!
+    cart = session[:shopping_cart]
+
+    order = Order.create(total:  @total,
+                         date:   Time.zone.today,
+                         user:   user,
+                         status: 1)
+
+    cart.each_pair do |key, value|
+      product = Product.find(key)
+      OrderProduct.create(order:    order,
+                          product:  product,
+                          price:    product.price,
+                          quantity: value)
+    end
   end
 
   def cancel; end
