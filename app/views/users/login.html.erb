@@ -1,11 +1,11 @@
-<h3 class="title p-3">Log in page</h3>
+<h3 class="title p-3">Log in</h3>
 <%= form_with url: user_logging_path, method: :post do |form| %>
 
     <%= form.label :username, class: "label" %>
     <%= form.text_field :username, class: "input" %>
 
     <%= form.label :password, class: "label" %>
-    <%= form.password_field :password, class: "input pb-3" %>
+    <%= form.password_field :passphrase, class: "input mb-3" %>
     <%= form.submit "Log In", class: "button is-info" %>
 <% end %>
 <div class="pt-5">

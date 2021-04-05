@@ -23,15 +23,26 @@
       </div>
       <%= link_to "Account", account_path, class: "navbar-item" %>
       <%= link_to "About", about_page_path, class: "navbar-item" %>
-      <div class="navbar-item">Search</div>
+      <div class="navbar-item">
+        <%= form_with url: search_page_path, method: :get do |form| %>
+          <div class="field has-addons">
+            <div class="control">
+              <%= form.text_field :search, class: "input", placeholder: "Search Products" %>
+            </div>
+            <div class="control">
+              <%= hidden_field_tag(:category, "All") %>
+              <%= form.submit "Search", class: "button is-light is-link" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
           <%= link_to "🛒Cart", cart_view_path, class: "button is-ghost" %>
             <% if user.powerlevel > 0 %>
-                <%= link_to user.username.capitalize, account_path, class: "button is-info" %>
+                <%= link_to user.username.titleize, account_path, class: "button is-info" %>
                 <%= link_to "Log Out", user_logout_path, class: "button is-danger" %>
             <% else %>
                 <%= link_to "Sign Up", new_account_path, class: "button is-primary" %>

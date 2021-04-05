@@ -1,0 +1,27 @@
+<%= @search %><br><%= @category %><br><%= @find %>
+
+<div class="p-5">
+    <div>
+        <%= form_with url: search_page_path, method: :get do |form| %>
+            <div class="field has-addons">
+                <div class="control">
+                    <%= form.text_field :search, class: "input", placeholder: "Search"  %>
+                </div>
+                <div class="control">
+                    <div class="select">
+                        <%= form.select :category, @cats %>
+                    </div>
+                </div>
+                <div class="control">
+                    <%= form.submit "Search", class: "button is-link" %>
+                </div>
+            </div>
+        <% end %>
+        <h3 class="title is-5">Search results</h3>
+    </div>
+    <div class="columns is-multiline">
+    <%= render partial: 'products/product',
+                collection: @results,
+                locals: { show_link: true } %>
+    </div>
+</div>
