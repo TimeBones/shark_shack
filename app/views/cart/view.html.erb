@@ -1,6 +1,10 @@
 <h1 class="title is-5">Cart page</h1>
 <div class="p-5">
-    <div class="">
+    <% if @cart.empty? %>
+        <h3 class="title is-3">Your cart is empty</h3>
+        <%= link_to "View Our Products", products_path %>
+    <% else %>
+        <%= link_to "Keep Shopping", products_path %>
         <table class="table is-hoverable">
             <% @cart.each_pair do |key, value| %>
                 <% product = Product.find(key) %>
@@ -18,6 +22,12 @@
                 </tr>
             <% end %>
             <tr>
+                <td></td>
+                <td>Your total order is </td>
+                <td><%= number_to_currency 7%></td>
+                <td></td>
+            </tr>
+            <tr>
                 <td><%= link_to "Empty Cart", cart_empty_path, class: "button is-danger" %></td>
                 <td></td>
                 <td></td>
@@ -29,13 +39,5 @@
                 </td>
             </tr>
         </table>
-    </div>
-    <div class="media">
-        <p class="media-left">
-
-        </p>
-        <p class="media-right">
-
-        </p>
-    </div>
+    <% end %>
 </div>

@@ -34,4 +34,9 @@ class CartController < ApplicationController
   def view
     @cart = session[:shopping_cart]
   end
+
+  def empty
+    session[:shopping_cart] = {}
+    redirect_to root_path
+  end
 end
