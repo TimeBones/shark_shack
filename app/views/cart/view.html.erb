@@ -8,8 +8,15 @@
             <% subtotal = 0 %>
             <% @cart.each_pair do |key, value| %>
                 <% product = Product.find(key) %>
-                <% subtotal += product.price %>
+                <% subtotal += (product.price * value) %>
                 <tr>
+                    <td>
+                        <%= form_with url: cart_destroy_path, method: :delete do %>
+                            <%= hidden_field_tag(:product_id, product.id) %>
+                            <%= hidden_field_tag(:source, request.env['PATH_INFO']) %>
+                            <%= button_tag '❌', class: "button is-ghost" %>
+                        <% end %>
+                    </td>
                     <td>
                         <% if product.image.present? %>
                             <figure class="image is-64x64">
@@ -18,23 +25,47 @@
                         <% end %>
                     </td>
                     <td><%= product.name %></td>
-                    <td><%= number_to_currency product.price.to_f / 100.0 %></td>
-                    <td>Qty: <%= value %></td>
+                    <td>
+                        <%= form_with url: cart_minus_path, method: :post do %>
+                            <%= hidden_field_tag(:product_id, product.id) %>
+                            <%= hidden_field_tag(:qty, 1) %>
+                            <%= hidden_field_tag(:source, request.env['PATH_INFO']) %>
+                            <%= button_tag '➖', class: "button is-light is-danger" %>
+                        <% end %>
+                    </td>
+                    <td>
+                        Qty: <%= value %>
+                    </td>
+                    <td>
+                        <%= form_with url: cart_create_path, method: :post do %>
+                            <%= hidden_field_tag(:product_id, product.id) %>
+                            <%= hidden_field_tag(:qty, 1) %>
+                            <%= hidden_field_tag(:source, request.env['PATH_INFO']) %>
+                            <%= button_tag '➕', class: "button is-light is-success" %>
+                        <% end %>
+                    </td>
+                    <td><%= number_to_currency product.price.to_f / 100.0 %> ea</td>
                 </tr>
             <% end %>
             <tr>
                 <td></td>
-                <td>Your Order Total Is </td>
-                <td><%= number_to_currency subtotal.to_f / 100%></td>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= number_to_currency subtotal.to_f / 100%> Total</td>
             </tr>
             <tr>
                 <td><%= link_to "Empty Cart", cart_empty_path, class: "button is-danger" %></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <%= form_with url: checkout_create_path, remote: true do %>
-                        <%= hidden_field_tag(:cart, @cart) %>
+                        <%=  %>
                         <%= button_tag "Checkout", class: "button is-success" %>
                     <% end %>
                 </td>

@@ -20,13 +20,13 @@ class ApplicationController < ActionController::Base
   end
 
   def taxes
-    gst = 0.05 # GST
-    bc_st = 0.07 # British Columia sales tax
-    mb_st = 0.07 # Manitoba sales tax
+    gst = 0.05      # GST
+    bc_st = 0.07    # British Columia sales tax
+    mb_st = 0.07    # Manitoba sales tax
     qu_st = 0.09975 # Quebec sales tax
-    sk_st = 0.06 # Saskatchewan sales tax
-    ot_hst = 0.13 # Ontario harmonized sales tax
-    hst = 0.15 # Harmonized sales tax
+    sk_st = 0.06    # Saskatchewan sales tax
+    ot_hst = 0.13   # Ontario harmonized sales tax
+    hst = 0.15      # Harmonized sales tax
 
     {
       "BC" => { "province" => "British Columbia",

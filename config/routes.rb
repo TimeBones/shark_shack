@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   scope "/cart" do
     post "create", to: "cart#create", as: "cart_create"
+    post "minus", to: "cart#minus", as: "cart_minus"
     get "destroy", to: "cart#destroy", as: "cart_destroy"
     get "empty", to: "cart#empty", as: "cart_empty"
     get "view", to: "cart#view", as: "cart_view"
