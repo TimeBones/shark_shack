@@ -42,7 +42,7 @@ class CheckoutController < ApplicationController
     order = Order.create(total:  @total,
                          date:   Time.zone.today,
                          user:   user,
-                         status: 1)
+                         status: 1) # 3.3.2 add subtotal
 
     cart.each_pair do |key, value|
       product = Product.find(key)

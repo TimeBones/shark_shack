@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cart, only: %i[create destroy index]
   resources :products, only: %i[show index]
   resources :categories, only: %i[show index]
+  resources :orders, only: %i[show index]
 
   get "/about", to: "pages#about", as: "about_page"
   get "/search", to: "pages#search", as: "search_page"

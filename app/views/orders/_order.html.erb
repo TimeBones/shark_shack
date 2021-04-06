@@ -1,0 +1,22 @@
+<div class="p-5">
+    <h3 class="title is-5">Order Number: <%= order.id %></h3>
+    <p>Date: <%= order.date %></p>
+    <p>Total: <%= number_to_currency order.total / 100 %></p>
+    <p>Status: <%= order.status %></p>
+    <p>Products</p>
+    <table class="table is-hoverable">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+        </tr>
+        <% order.order_products.each do |op| %>
+            <tr>
+            <td>
+                <%=op.product.name%>
+            </td>
+                <td>x <%= op.quantity %></td>
+            </tr>
+        <% end %>
+    </table>
+
+</div>
