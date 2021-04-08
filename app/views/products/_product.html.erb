@@ -1,9 +1,13 @@
 <% if show_link %>
-  <div class="column is-one-fifth">
+  <% if home_page %>
+    <div class="colum is-one-third">
+  <% else %>
+    <div class="column is-one-fifth">
+  <% end %>
 <% else %>
   <div class="column is-10 is-offset-1">
 <% end %>
-  <div class="card">
+  <div class="card p-1">
     <% if product.image.present? %>
       <div class="card-image">
       <% if show_link%>

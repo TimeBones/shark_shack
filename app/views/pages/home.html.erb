@@ -1,5 +1,20 @@
-<h3 class="title is-3 p-6">This is the home page</h3>
-<div class="pl-6">
-    <%= link_to "Products", "products" %><br>
-    <%= link_to "Account", "account" %>
+<div class="p-6">
+    <div class="columns">
+        <div class="column p-1">
+        <h3 class="title is-3">Top Selling Products</h3>
+            <div class="columns">
+                <%= render partial: 'products/product',
+                        collection: @top,
+                        locals: { show_link: true, home_page: true } %>
+            </div>
+        </div>
+        <div class="column p-1">
+        <h3 class="title is-3">Sale Products</h3>
+            <div class="columns">
+                <%= render partial: 'products/product',
+                        collection: @sale,
+                        locals: { show_link: true, home_page: true } %>
+            </div>
+        </div>
+    </div>
 </div>

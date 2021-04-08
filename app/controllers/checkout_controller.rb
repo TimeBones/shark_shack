@@ -59,18 +59,18 @@ class CheckoutController < ApplicationController
     session[:taxes] = nil
     @pi_data = payment_intent[:charges][:data][0]
     @total = stripe_session[:amount_total].to_i
-    @subtotal = (stripe_session[:amount_subtotal].to_i - (@total * line_tax["rate"])
+    @subtotal = (stripe_session[:amount_subtotal].to_i - (@total * line_tax["rate"]))
 
     cart = session[:shopping_cart]
     session[:shopping_cart].clear
 
-    order = Order.create(total:  @total,
-                         tax: (@total - @subtotal),
-                         tax_rate: (line_tax["rate"]),
+    order = Order.create(total:     @total,
+                         tax:       (@total - @subtotal),
+                         tax_rate:  (line_tax["rate"]),
                          tax_label: (line_tax["label"]),
-                         date:   Time.zone.today,
-                         user:   user,
-                         status: 1)
+                         date:      Time.zone.today,
+                         user:      user,
+                         status:    1)
 
     cart.each_pair do |key, value|
       product = Product.find(key)
