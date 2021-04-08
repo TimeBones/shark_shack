@@ -3,11 +3,14 @@
     <p>Date: <%= order.date %></p>
     <p>Taxes: <%= number_to_currency order.tax.to_f / 100 %></p>
     <p>Total: <%= number_to_currency order.total.to_f / 100 %></p>
-    <p>Status: <%= order.status %></p>
-    <p>Products</p>
-    <table class="table is-hoverable">
+    <% if order.status == 1 %>
+        <p>Status: Shipped </p>
+    <% else %>
+        <p>Status: <%= order.status %></p>
+    <% end %>
+    <table class="table is-hoverable pt-2">
         <tr>
-            <th>Name</th>
+            <th>Products</th>
             <th>Quantity</th>
         </tr>
         <% order.order_products.each do |op| %>

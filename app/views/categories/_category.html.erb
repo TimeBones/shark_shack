@@ -1,6 +1,6 @@
 <div class="p-3">
     <h3 class="title"><%= @category.name %> Products</h3>
     <div class="columns is-multiline">
-        <%= render partial: 'products/product', collection:  @category.products, locals: { show_link: true } %>
+        <%= render partial: 'products/product', collection:  @category.products, locals: { show_link: true, home_page: false } %>
     </div>
 </div>
