@@ -10,7 +10,7 @@
     <p>orders: TBD <%=%></p>
     <ul>
     <% user.orders.each do |o| %>
-        <li><%= o.date %></li>
+        <li><%= link_to o.date, o %></li>
     <% end %>
     </ul>
 </div>

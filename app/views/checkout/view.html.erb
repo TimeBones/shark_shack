@@ -1,0 +1,60 @@
+<div class="p-5">
+    <div class="container is-widescreen">
+        <div class="column is-5 is-offset-4">
+            <table class="table is-hoverable is-flex-grow-1">
+            <% subtotal = 0 %>
+                <% @cart.each_pair do |key, value| %>
+                    <% product = Product.find(key) %>
+                    <% subtotal += (product.price * value) %>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><%= product.name %></td>
+                            <td>x <%= value %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    <%= %>
+                <% end %>
+                <tr>
+                            <td></td>
+                            <td></td>
+                            <td><%= "Total" %></td>
+                            <td><%= number_to_currency subtotal.to_f / 100 %></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+            </table>
+            <%= form_with url: checkout_create_path, method: :create, class: "is-flex-grow-1" do |form| %>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <%= form.label :address, class: "label" %>
+                    </div>
+                    <div class="field-body">
+                        <div class="control">
+                            <%= form.text_field :address, class: "input", value: user.address %>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-label">
+                        <%= form.label :province, class: "label" %>
+                    </div>
+                    <div class="field-body">
+                        <div class="control">
+                            <div class="select">
+                                <%= form.select :province, @prov %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped is-grouped-centered">
+                    <div class="control">
+                        <%= form.submit "Checkout", class: "button is-success" %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

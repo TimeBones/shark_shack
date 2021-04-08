@@ -25,4 +25,9 @@ class PagesController < ApplicationController
       flash[:notice] = "Invalid Category"
     end
   end
+
+  def home
+    @sale = Category.find_by(name: "Sale").products.limit(3)
+    @top = Product.top.limit(3)
+  end
 end
