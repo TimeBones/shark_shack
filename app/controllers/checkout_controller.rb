@@ -31,17 +31,19 @@ class CheckoutController < ApplicationController
       line_items << item
     end
 
+    tax_amount = (sum * line_tax["rate"]).round
+
     tax =
       {
         name:     line_tax["label"],
-        amount:   (sum * line_tax["rate"]).to_i,
+        amount:   tax_amount,
         currency: "cad",
         quantity: 1
       }
 
     line_items << tax
-    session[:taxes] = line_tax
 
+    session[:taxes] = [line_tax, tax_amount]
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ["card"],
       success_url:          "#{checkout_success_url}?session_id={CHECKOUT_SESSION_ID}",
@@ -56,18 +58,16 @@ class CheckoutController < ApplicationController
     stripe_session = Stripe::Checkout::Session.retrieve(params[:session_id])
     payment_intent = Stripe::PaymentIntent.retrieve(stripe_session.payment_intent)
     line_tax = session[:taxes]
-    session[:taxes] = nil
     @pi_data = payment_intent[:charges][:data][0]
     @total = stripe_session[:amount_total].to_i
-    @subtotal = (stripe_session[:amount_subtotal].to_i - (@total * line_tax["rate"]))
+    @subtotal = (@total - line_tax[1])
 
     cart = session[:shopping_cart]
-    session[:shopping_cart].clear
 
     order = Order.create(total:     @total,
-                         tax:       (@total - @subtotal),
-                         tax_rate:  (line_tax["rate"]),
-                         tax_label: (line_tax["label"]),
+                         tax:       line_tax[1],
+                         tax_rate:  line_tax[0]["rate"].to_f,
+                         tax_label: (line_tax[0]["label"]),
                          date:      Time.zone.today,
                          user:      user,
                          status:    1)
@@ -79,5 +79,7 @@ class CheckoutController < ApplicationController
                           price:    product.price,
                           quantity: value)
     end
+    session[:shopping_cart].clear
+    session[:taxes].clear
   end
 end
