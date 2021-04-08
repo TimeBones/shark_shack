@@ -29,45 +29,71 @@ class ApplicationController < ActionController::Base
     hst = 0.15      # Harmonized sales tax
 
     {
-      "BC" => { "province" => "British Columbia",
-                "rate"     => gst + bc_st,
-                "label"    => "GST + PST" },
-      "AB" => { "province" => "Alberta",
-                "rate"     => gst,
-                "label"    => "GST" },
-      "SK" => { "province" => "Saskatchewan",
-                "rate"     => gst + sk_st,
-                "label"    => "GST + PST" },
-      "MB" => { "province" => "Manitoba",
-                "rate"     => gst + mb_st,
-                "label"    => "GST + RST" },
-      "ON" => { "province" => "Ontario",
-                "rate"     => ot_hst,
-                "label"    => "HST" },
-      "QU" => { "province" => "Quebec",
-                "rate"     => gst + qu_st,
-                "label"    => "GST + QST" },
-      "NF" => { "province" => "Newfoundland and Labrador",
-                "rate"     => hst,
-                "label"    => "HST" },
-      "PE" => { "province" => "Prince Edward Island",
-                "rate"     => hst,
-                "label"    => "HST" },
-      "NB" => { "province" => "New Brunswick",
-                "rate"     => hst,
-                "label"    => "HST" },
-      "NS" => { "province" => "Nova Scotia",
-                "rate"     => hst,
-                "label"    => "HST" },
-      "YK" => { "province" => "Yukon",
-                "rate"     => gst,
-                "label"    => "GST" },
-      "NT" => { "province" => "Northwest Territories",
-                "rate"     => gst,
-                "label"    => "GST" },
-      "NV" => { "province" => "Nunavut",
-                "rate"     => gst,
-                "label"    => "GST" }
+      "BC" => {
+        "rate"     => (gst + bc_st).round(2),
+        "province" => "British Columbia",
+        "label"    => "GST + PST"
+      },
+      "AB" => {
+        "rate"     => gst,
+        "label"    => "GST",
+        "province" => "Alberta"
+      },
+      "SK" => {
+        "rate"     => (gst + sk_st).round(2),
+        "label"    => "GST + PST",
+        "province" => "Saskatchewan"
+      },
+      "MB" => {
+        "rate"     => (gst + mb_st).round(2),
+        "label"    => "GST + RST",
+        "province" => "Manitoba"
+      },
+      "ON" => {
+        "rate"     => ot_hst,
+        "label"    => "HST",
+        "province" => "Ontario"
+      },
+      "QU" => {
+        "rate"     => (gst + qu_st).round(5),
+        "label"    => "GST + QST",
+        "province" => "Quebec"
+      },
+      "NF" => {
+        "rate"     => hst,
+        "label"    => "HST",
+        "province" => "Newfoundland and Labrador"
+      },
+      "PE" => {
+        "rate"     => hst,
+        "label"    => "HST",
+        "province" => "Prince Edward Island"
+      },
+      "NB" => {
+        "rate"     => hst,
+        "label"    => "HST",
+        "province" => "New Brunswick"
+      },
+      "NS" => {
+        "rate"     => hst,
+        "label"    => "HST",
+        "province" => "Nova Scotia"
+      },
+      "YK" => {
+        "rate"     => gst,
+        "label"    => "GST",
+        "province" => "Yukon"
+      },
+      "NT" => {
+        "rate"     => gst,
+        "label"    => "GST",
+        "province" => "Northwest Territories"
+      },
+      "NV" => {
+        "rate"     => gst,
+        "label"    => "GST",
+        "province" => "Nunavut"
+      }
     }
   end
 end

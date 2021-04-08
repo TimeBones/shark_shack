@@ -63,12 +63,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>
-                    <%= form_with url: checkout_create_path, remote: true do %>
-                        <%=  %>
-                        <%= button_tag "Checkout", class: "button is-success" %>
-                    <% end %>
-                </td>
+                <td><%= link_to "Next", checkout_view_path, class: "button is-success" %></td>
             </tr>
         </table>
     <% end %>
